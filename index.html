@@ -14,14 +14,20 @@
         <input id="new-password" placeholder="Digite sua senha" type="password" name="password" required>
         <input id="equal-password" placeholder="Digite sua senha novamente" type="password" name="password" required>
 
-        <button style="margin-top: 20px;" type="submit" id="my-button">LOGIN</button>
+        <button style="margin-top: 20px;"  id="my-button">EFETUAR CADASTRO</button>
     </form>
     <script type="text/javascript">
-        // document.getElementById('my-button')
-        //     .addEventListener('click', function () {
-        //         const textButton = document.getElementById('my-txt').value
-        //         alert(textButton)
-        //     })
+        document.getElementById('my-button')
+            .addEventListener('click', function (e) {
+                const newPassword = document.getElementById('new-password').value
+                const equalButton = document.getElementById('equal-password').value
+                    if(newPassword === equalButton) {
+                        alert('usuario cadastrado com sucesso')
+                    } else {
+                        alert('senhas não conferem')
+                    }
+                // alert(textButton)
+            })
     </script>
 </body>
 
