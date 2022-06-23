@@ -1,33 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LOGIN</title>
 </head>
 
 <body>
     <form style="display: flex; flex-direction: column; width: 200px; margin-bottom: 20px;">
-        <input placeholder="Digite seu e-mail" type="email" name="email" id="my-txt" required>
+        <input placeholder="Digite seu e-mail" type="email" name="email" id="email" required>
         <input id="new-password" placeholder="Digite sua senha" type="password" name="password" required>
         <input id="equal-password" placeholder="Digite sua senha novamente" type="password" name="password" required>
 
-        <button style="margin-top: 20px;"  id="my-button">EFETUAR CADASTRO</button>
+        <button type="submit" style="margin-top: 20px;" id="my-button">EFETUAR CADASTRO</button>
     </form>
+
+    <dialog id="error-input">
+        <section>
+            <h1>ERRO!!!!! PQP</h1>
+            <p>AS SENHAS NAO CONFEREM D:</p>
+            <button type="button" id="close-dialog">FECHAR DIALOG</button>
+        </section>
+    </dialog>
     <script type="text/javascript">
-        document.getElementById('my-button')
-            .addEventListener('click', function (e) {
+        const modal = document.getElementById('error-input')
+
+        document.getElementById('my-button') //busca uma referencia de um elemento html 
+            .addEventListener('click', function (event) {
+                event.preventDefault()  // Cancela o evento se for cancelável, sem parar a propagação do mesmo.
+
                 const newPassword = document.getElementById('new-password').value
-                const equalButton = document.getElementById('equal-password').value
-                    if(newPassword === equalButton) {
-                        alert('usuario cadastrado com sucesso')
-                    } else {
-                        alert('senhas não conferem')
-                    }
-                // alert(textButton)
+                const confirmPassword = document.getElementById('equal-password').value
+
+                if (newPassword === confirmPassword) {
+                    console.log(window)
+                    window.location.replace("login.html");
+                    // VERIFICAR O BUG SE AO CADASTRAR E RETORNAR OS INPUTS TO USUARIO FICAM NA URL
+                } else {
+                    modal.showModal() // abre o dialog se as senhas nao conferem
+                }
             })
+
+        document.getElementById('close-dialog').addEventListener('click', function (event) {
+            modal.close() // fecha o dialog ao clicar no botao para fechar o dialog
+        })
     </script>
 </body>
 
